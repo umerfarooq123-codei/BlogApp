@@ -1,0 +1,91 @@
+{% extends "base.html"%}
+{% block start %}
+
+<body>
+
+    <style>
+        .text-bg-custom {
+            background-color: #cef6bb;
+            color: green;
+        }
+
+        .text-bg-custom-failed {
+            background-color: #f6bbbb;
+            color: red;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card" style="width: 85%;">
+                <table class="table table-hover mt-2" style="padding: 10px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="text-align: start;">Amount</th>
+                            <th style="text-align: start;">Status</th>
+                            <th style="text-align: start;">From</th>
+                            <th style="text-align: start;">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for charge in charges %}
+                        <tr>
+                            <td style="text-align: start;">{{charge.amount}} {{ charge.currency_type }}</td>
+                            <td style="text-align: start;">
+                                <span class="badge text-bg-custom"
+                                    style="padding: 10px; font-size: medium; font-weight: normal;">
+                                    {{charge.status}} <i class="fas fa-check"></i>
+                                </span>
+                            </td>
+                            <td style="text-align: start;">{{charge.billing_details.email}}</td>
+                            <td style="text-align: start;">{{charge.created}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="col" style="padding: 10px;">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p>Viewing {{ charges.start_index }} to {{ charges.end_index }} of
+                                {{charges.paginator.count}} results</p>
+                        </div>
+                        <div>
+                            <h2>
+                                <nav>
+                                    <ul class="pagination" style="text-align: right">
+                                        {% if charges.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                                href="?page={{charges.previous_page_number}}">Previous</a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page=1">1</a>
+                                        </li>
+                                        <li class="page-item {% if charges.paginator.count < 10 %}disabled{% endif %}">
+                                            <a class="page-link" href="?page=2">2</a>
+                                        </li>
+                                        <li class="page-item {% if charges.paginator.count < 20 %}disabled{% endif %}">
+                                            <a class="page-link" href="?page=3">3</a>
+                                        </li>
+                                        {% if charges.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{charges.next_page_number}}">Next</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <p>Total Amount: ${{ total_amount }}</p>
+</body>
+
+
+{% endblock %}

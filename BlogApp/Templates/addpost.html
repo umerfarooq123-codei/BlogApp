@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block start %}
+
+<style>
+    .custom-input {
+        font-weight: 300;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="text-center">Add Post</h2>
+        <hr />
+
+        {% if messages %} {% for message in messages %}
+
+        <div class="container-fluid card alert alert-danger m-2"
+            style="border-radius: 10px; padding: 6px; display: flex; align-items: center;" id="messageID">
+            <div class="toast-body flex-grow-1">{{ message }}</div>
+            <a type="button" class="button" id="btn_close" style="margin-left: auto; align-self: center;"><i
+                    class="fa-solid fa-xmark"></i></a>
+        </div>
+
+        <div class="align-items-center container alert alert-danger m-2" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ message }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <!-- <div class="alert alert-danger m-2" role="alert">{{ message }}</div> -->
+        {% endfor %} {% endif %}
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control custom-input" name="title" id="title" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control custom-input" name="content" id="content" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <select class="form-select custom-input" name="author" id="author" required>
+                <option value="" disabled selected>Select author</option>
+                <option class="custom-input" value="">{{user}}</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select  custom-input" name="category" id="category" required>
+                <option value="" disabled selected>Select Category</option>
+                {% for category in categories %}
+                <option class="custom-input" value="{{category}}">{{category}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="created_at" class="form-label">Created At</label>
+            <input type="date" class="form-control custom-input" name="created_at" id="created_at" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="updated_at" class="form-label">Updated At</label>
+            <input type="date" class="form-control custom-input" name="updated_at" id="updated_at" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control custom-input" name="image" id="image" required>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input  custom-input" name="is_published" id="is_published">
+            <label class="form-check-label" for="is_published">Is Published</label>
+        </div>
+
+        <div class="mb-3">
+            <label for="slug" class="form-label">Slug</label>
+            <input type="text" class="form-control custom-input" name="slug" id="slug" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<script>
+    var message = document.getElementById('messageID');
+    if ("{{messages}}") {
+
+        message.focus();
+    }
+    var btn_close = document.getElementById('btn_close')
+
+    btn_close.addEventListener('click', function () {
+        message.hidden = true
+    })
+
+
+</script>
+
+{% endblock %}

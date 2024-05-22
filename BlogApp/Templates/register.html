@@ -1,0 +1,115 @@
+{% extends "base.html"%} {% block start %}
+
+
+<div class="container-fluid">
+  <form class="col-6 mx-auto card p-3 shadow-lg mt-5 mb-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 class="text-center">Register</h2>
+    <hr />
+
+    
+    {% if messages %}
+    {% for message in messages %}
+    {% if 'error' in message.tags %}
+    <div class="alert alert-danger alert-dismissible fade show position-relative" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div id="progress-bar" class="progress position-absolute top-0 start-0 end-0" style="height: 2px;">
+        <div id="progress-bar-inner" class="progress-bar" role="progressbar" style="width: 0;" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      {{ message }}
+    </div>
+    {% endif %}
+
+    {% if 'success' in message.tags %}
+    <div class="alert alert-success alert-dismissible fade show position-relative" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div id="progress-bar" class="progress position-absolute top-0 start-0 end-0" style="height: 2px;">
+        <div id="progress-bar-inner" class="progress-bar" role="progressbar" style="width: 0;" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      {{ message }}
+    </div>
+    {% endif %}
+
+    {% if 'warning' in message.tags %}
+    <div class="alert alert-warning alert-dismissible fade show position-relative" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div id="progress-bar" class="progress position-absolute top-0 start-0 end-0" style="height: 2px;">
+        <div id="progress-bar-inner" class="progress-bar" role="progressbar" style="width: 0;" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      {{ message }}
+    </div>
+    {% endif %}
+
+    {% if 'info' in message.tags %}
+    <div class="alert alert-info alert-dismissible fade show position-relative" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div id="progress-bar" class="progress position-absolute top-0 start-0 end-0" style="height: 2px;">
+        <div id="progress-bar-inner" class="progress-bar" role="progressbar" style="width: 0;" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var progressBar = document.getElementById('progress-bar-inner');
+        var alertBox = document.querySelector('.alert');
+        var closeBtn = document.querySelector('.btn-close');
+
+        var totalWidth = 100;
+        var animationDuration = 3000;
+        var start = null;
+
+        function animate(timestamp) {
+          if (!start) start = timestamp;
+          var progress = timestamp - start;
+          var width = (progress / animationDuration) * totalWidth;
+          progressBar.style.width = Math.min(width, totalWidth) + '%';
+          if (progress < animationDuration) {
+            requestAnimationFrame(animate);
+          } else {
+            progressBar.style.width = totalWidth + '%';
+            setTimeout(function () {
+              alertBox.classList.add('d-none');
+            }, 500);
+          }
+        }
+
+        requestAnimationFrame(animate);
+        closeBtn.addEventListener('click', function () {
+          alertBox.classList.add('d-none');
+        });
+      });
+    </script>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">First name</label>
+      <input type="text" name="first_name" value="{{ request.session.first_name|default:'' }}" required
+        class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Last name</label>
+      <input type="text" name="last_name" value="{{ request.session.last_name|default:'' }}" required
+        class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Username</label>
+      <input type="text" name="username" value="{{ request.session.username|default:'' }}" required class="form-control"
+        id="exampleInputPassword1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" required name="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <p>Already have an account? <a href="/login/">Login</a></p>
+    <button type="submit" class="btn btn-outline-success">Register</button>
+  </form>
+</div>
+{% endblock %}
