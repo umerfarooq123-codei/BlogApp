@@ -1,63 +1,5 @@
 {% extends "base.html" %} {% block start %}
 
-<style>
-    .card_title {
-        color: white;
-        font-size: 40px;
-        font-weight: 400;
-        text-decoration: none;
-        line-height: 0.9;
-    }
-
-    .card_content {
-        color: white;
-        font-size: 18px;
-        text-transform: uppercase;
-        font-weight: 400;
-        letter-spacing: 2px;
-        text-decoration: none;
-    }
-
-    .category-link:hover {
-        color: #946cf2;
-        font-weight: 400;
-        transition: all 0.3s ease-in-out;
-        /* Change to your desired hover color */
-    }
-
-    .second_div {
-        margin-left: 35px;
-        margin-right: 15px;
-    }
-
-    .image-with-shadow {
-        opacity: 0.5;
-        border: none;
-    }
-
-    .row-for-ADC {
-        /* display: flex; */
-        align-items: start;
-        margin-right: 30px;
-    }
-
-    .right_side_column_headings {
-        color: #946cf2;
-        font-size: smaller;
-        letter-spacing: 3px;
-        margin-top: 35px;
-        margin-bottom: 0px;
-    }
-
-    .right_side_column_content {
-        color: black;
-        font-weight: 500;
-        font-size: large;
-        letter-spacing: 0.5px;
-        text-decoration: none;
-        line-height: 0.5px;
-    }
-</style>
 
 
 <div class="container-xxl" style="padding-left: 30px; padding-right: 30px; margin-bottom: 100px;">
@@ -71,28 +13,42 @@
         <div class="col-lg-9">
             {% for post in posts %}
             {% if forloop.first %}
-            <div class="card text-bg-dark" style="border: none; border-radius: 0px;">
-                <img src="{{post.image.url}}" class="img-fluid image-with-shadow" alt="{{post.title}}">
-                <div class="card-img-overlay d-flex flex-column justify-content-end second_div">
-                    <div style="margin-bottom: 40px;">
-                        <a class="card-text card_content category-link" href="#">{{post.category}}</a>
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <a class="card-title card_title" style="text-decoration: none;" href="#">{{post.title}}</a>
-                    </div>
-                    <div class="column" style="margin-bottom: 20px;">
-                        <span class="text-no-underline row-for-ADC"><i class="fa-solid fa-user"></i>
-                            akbarh</i></span>
-                        <span class="text-no-underline row-for-ADC">July 7, 2021</span>
-                        <span class="text-no-underline row-for-ADC">No Comments</span>
-                    </div>
 
-                    <p class="card-text">{{post.content}}</p>
-                    <p class="card-text"><small>Last updated {{post.updated_at}} mins ago</small></p>
-                </div>
+            <div class="thumb-box">
+                <a href="">
+                    <img src="{{post.image.url}}" alt="">
+                    <span class="overlay-box">
+                        <div>
+                            <span class="meta">{{post.category}}</span>
+                        </div>
+                        <span class="main-title">{{post.title}}</span>
+                        <div class="spanElement">
+                            <span class="text-no-underline row-for-ADC"><i class="fa-solid fa-user"></i>
+                                akbarh</i></span>
+                            <span class="text-no-underline row-for-ADC">July 7, 2021</span>
+                            <span class="text-no-underline row-for-ADC">No Comments</span>
+                        </div>
+                        <span class="description">Last updated at {{post.updated_at}}</span>
+                        <span class="description">{{post.content}}</span>
+                    </span>
+                </a>
             </div>
+
             {% endif %}
             {% endfor %}
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-start">Editor's Pick</h3>
+                    </div>
+                    <div class="col">
+                        <div class="text-end"><a class="custom_a" href="#">View All <i
+                                    class="fa-solid fa-arrow-right"></i></a></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="col-lg-3">
             <img src="media/images/apple_logo.jpg" class="img-fluid">
@@ -113,4 +69,35 @@
     </div>
 </div>
 
+<section>
+
+
+</section>
 {% endblock %}
+
+<!--
+     <div class="card text-bg-dark hero" style="border: none; border-radius: 0px;">
+                <img src="{{post.image.url}}" class="img-fluid image-with-shadow" alt="{{post.title}}">
+                <div class="card-img-overlay d-flex flex-column justify-content-end second_div">
+                    <div class="motto">This is my NEW
+                        ldsaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddong, long text</div>
+                    <div style="margin-bottom: 40px;">
+                        <a class="card_content category-link" href="#">{{post.category}}</a>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <a class="card_title" style="text-decoration: none;" href="#">{{post.title}}</a>
+                    </div>
+                    <div class="column" style="margin-bottom: 26%;">
+                        <span class="text-no-underline row-for-ADC"><i class="fa-solid fa-user"></i>
+                            akbarh</i></span>
+                        <span class="text-no-underline row-for-ADC">July 7, 2021</span>
+                        <span class="text-no-underline row-for-ADC">No Comments</span>
+                    </div>
+
+                    <p>{{post.content}}</p>
+                    <p><small>Last updated {{post.updated_at}} </small></p>
+                </div>
+            </div>
+
+
+ -->

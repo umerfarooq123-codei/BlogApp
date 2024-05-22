@@ -1,0 +1,17 @@
+{% extends "base.html"%} {% block start %}
+
+<h1>{{ category|capfirst }} Posts</h1>
+<ul>
+  {% for post in posts %}
+  <li>
+    <img
+      src="{{post.image.url}}"
+      class="img-fluid image-with-shadow"
+      alt="{{post.title}}"
+    />
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

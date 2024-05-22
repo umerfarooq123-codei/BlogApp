@@ -20,7 +20,6 @@ fake = Faker()
 # Create your views here.
 
 
-
 listOfCategories = [
     "Home",
     "Politics",
@@ -35,7 +34,9 @@ listOfCategories = [
 
 def home(request):
     posts = Post.objects.all()
-    content = {"posts": posts}
+    for post in posts:
+        post.updated_at = post.updated_at.strftime('%B %d, %Y')
+    content = {"posts": posts, 'page': "Home"}
     return render(request, "home.html", context=content)
 
 
@@ -164,13 +165,13 @@ def login_user(request):
         if not User.objects.filter(username=username).exists():
             messages.error(request, "User doesn't exist!")
             request.session['login_username'] = username
-            return redirect('/login/')
+            return redirect(reverse('Login'))
 
         user = authenticate(username=username, password=password)
         if user is None:
             messages.error(request, 'Incorrect password!')
             request.session['login_username'] = username
-            return redirect('/login/')
+            return redirect(reverse('Login'))
         else:
             login(request=request, user=user)
             if remember_me:
@@ -186,7 +187,7 @@ def login_user(request):
                 response.delete_cookie('remember_password')
                 return response
 
-    return render(request, 'login.html')
+    return render(request, 'login.html', context={'page': "Login"})
 
 
 def logout_user(request):
@@ -196,3 +197,9 @@ def logout_user(request):
 
 def forgotpass(request):
     return render(request, "forgotpass.html")
+
+
+def category_view(request, category):
+    posts = Post.objects.filter(category=category)
+    content = {"posts": posts, 'page': category}
+    return render(request, 'category_view.html', context=content)
