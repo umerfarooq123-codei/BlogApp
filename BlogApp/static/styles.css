@@ -24,19 +24,18 @@
 .navbar-nav .nav-link:hover {
   color: #946cf2;
   font-weight: 400;
-  /* Change to your desired hover color */
 }
+
 .custom_a {
   color: #1b1b1b;
   font-weight: 600;
-  text-decoration: none !important;
+  text-decoration: none;
   letter-spacing: 1.5px;
-  /* Change to your desired hover color */
 }
+
 .custom_a:hover {
   color: #946cf2;
   transition: all 0.2s ease-in-out;
-  /* Change to your desired hover color */
 }
 
 .nav-link {
@@ -273,4 +272,57 @@ body {
 
 .thumb-box a:hover .overlay-box {
   background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
+}
+
+.tdd {
+  height: 15vw;
+  width: 22.5vw;
+  object-fit: cover; /* Ensure the image covers the area */
+  display: block; /* Prevents extra space below inline images */
+  margin-bottom: 5px; /* Add space between image and text */
+}
+
+.hh5 {
+  color: #000;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 20vw;
+  line-height: 20px;
+}
+
+/* Style for table and table cells */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  border: 0px;
+  vertical-align: top; /* Align content to the top of the cell */
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+  table,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  td {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .tdd {
+    width: 100%;
+    height: auto; /* Allow images to scale with their aspect ratio */
+  }
+
+  .hh5 {
+    max-width: 100%; /* Adjust text width to fit the container */
+  }
 }

@@ -34,9 +34,12 @@ listOfCategories = [
 
 def home(request):
     posts = Post.objects.all()
-    for post in posts:
+    selected = []
+    for i in range(4):
+        selected.append(posts[i])
+    for post in selected:
         post.updated_at = post.updated_at.strftime('%B %d, %Y')
-    content = {"posts": posts, 'page': "Home"}
+    content = {"posts": selected, 'page': "Home"}
     return render(request, "home.html", context=content)
 
 

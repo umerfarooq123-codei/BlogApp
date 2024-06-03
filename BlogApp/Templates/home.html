@@ -1,8 +1,5 @@
 {% extends "base.html" %} {% block start %}
-
-
-
-<div class="container-xxl" style="padding-left: 30px; padding-right: 30px; margin-bottom: 100px;">
+<div class="container-xxl" style="padding:30px;">
     <div class="row mt-3">
         <div class="col">
             <a class="button" type="submit" href="/gen/">Generate Posts</a>
@@ -10,6 +7,7 @@
         </div>
     </div>
     <div class="row">
+        <!-- Left side panel/Image of page -->
         <div class="col-lg-9">
             {% for post in posts %}
             {% if forloop.first %}
@@ -36,20 +34,8 @@
 
             {% endif %}
             {% endfor %}
-
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col">
-                        <h3 class="text-start">Editor's Pick</h3>
-                    </div>
-                    <div class="col">
-                        <div class="text-end"><a class="custom_a" href="#">View All <i
-                                    class="fa-solid fa-arrow-right"></i></a></div>
-                    </div>
-                </div>
-            </div>
-
         </div>
+        <!-- Right side panel of page -->
         <div class="col-lg-3">
             <img src="media/images/apple_logo.jpg" class="img-fluid">
             <div class="column">
@@ -69,10 +55,132 @@
     </div>
 </div>
 
-<section>
+<!-- Section for Editors pick -->
+<section class="container-xxl" style="padding:30px;">
+    <div class="row">
+        <div class="col-lg-9">
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-start">Editor's Pick</h3>
+                    </div>
+                    <div class="col">
+                        <div class="text-end"><a class="custom_a" href="#">View All <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    {% for post in posts|slice:":3" %}
+                    <td>
+                        <a href="{{ post.get_absolute_url }}" style="text-decoration: none; color: inherit;">
+                            <img class="tdd" src="{{ post.image.url }}" alt="{{ post.title }}">
+                            <h5 class="hh5">{{ post.title }}</h5>
+                        </a>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <!-- News letter subscription part -->
+        <div class="col-lg-3">
+            <div id="news_icon" class="card border-opacity-25 border-black mt-5" style="border-radius: 0px;">
+                <!-- News letter icon -->
+                <div class="card parent-div"
+                    style="margin-left: 30px; background-color: #7a52ec; width: fit-content; height: 3rem; border: none; border-radius: 0px; padding: 5px;">
+                    <i class="fa-regular fa-envelope fa-xl"></i>
+                </div>
+
+                <div>
+                    <h5 style="padding-top: 30px; padding-left: 20px;">
+                        Subscribe to our newsletter
+                    </h5>
+                    <p style="padding-left: 20px;">gravida aliquet vulputate faucibus tristique odio.
+                    </p>
+
+                    <form id="subscription-form" class="text-center">
+                        <input type="email" id="email" placeholder="Enter your email">
+                        <div id="error-message" class="error-message"></div>
+                        <button type="submit"
+                            style="background-color: #7a52ec; color: #FFF; border-radius: 15px; padding: 10px; margin: 10px;">
+                            <div style="margin-left: 10px; margin-right: 10px;"> Subscribe</div>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+
+    <style>
+        input[type="email"] {
+            border-radius: 1px;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid lightgrey;
+        }
+
+        input[type="email"]:focus {
+            border-color: rgb(101, 101, 101);
+            outline: none;
+        }
+
+
+        button {
+            border-radius: 5px;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: rgb(251, 73, 73);
+            margin-top: 5px;
+        }
+
+        .fa-envelope {
+            color: #FFF;
+        }
+
+        .parent-div:hover .fa-envelope {
+            color: #a4a4a6;
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
 </section>
+
+<script>
+    document.getElementById("subscription-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const emailInput = document.getElementById("email");
+        const email = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const errorMessage = document.getElementById("error-message");
+        if (email && emailPattern.test(email)) {
+            errorMessage.textContent = "";
+            alert("Thank you for subscribing!");
+        } else {
+            errorMessage.textContent = "Please enter a valid email address.";
+        }
+    });
+    document.getElementById("email").addEventListener("input", function () {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = "";
+    });
+</script>
+
 {% endblock %}
 
 <!--
