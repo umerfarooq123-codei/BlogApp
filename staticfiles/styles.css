@@ -1,0 +1,331 @@
+.form-control {
+  display: none;
+}
+
+.form-control.input-visible {
+  display: block;
+}
+
+.input-expand {
+  width: 100%;
+  animation: fadeInInput 1s linear;
+}
+
+@keyframes fadeInInput {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.navbar-nav .nav-link:hover {
+  color: #946cf2;
+  font-weight: 400;
+}
+
+.custom_a {
+  color: #1b1b1b;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+}
+
+.custom_a:hover {
+  color: #946cf2;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link {
+  font-weight: 400;
+}
+
+body {
+  /* Gradient background */
+  background: linear-gradient(to right, #d0f7f5, #fff, #d3d3d3);
+  /* For older browsers */
+  background: -webkit-linear-gradient(to right, #d0f7f5, #fff, #d3d3d3);
+  /* Ensure the gradient covers the whole page */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.custom-card {
+  border-radius: 0px;
+  background: linear-gradient(to right, #d0f7f5, #fff, #d3d3d3);
+  /* For older browsers */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  background: -webkit-linear-gradient(to right, #d0f7f5, #fff, #d3d3d3);
+  /* Set your desired border radius */
+}
+
+#scrollToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* Remove padding */
+  width: 2.5rem;
+  /* Set width to match height */
+  height: 2.5rem;
+  border-radius: 10px;
+  display: flex;
+  /* Use flexbox */
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+}
+
+#scrollToTopBtn i {
+  font-size: 1.5rem;
+  /* Adjust icon size */
+}
+
+.card_title {
+  color: white;
+  text-decoration: none;
+  line-height: 8vh;
+  white-space: nowrap;
+  font-size: 3vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.card_content {
+  color: white;
+  position: absolute;
+  font-size: 3vw;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.category-link:hover {
+  color: #946cf2;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+  /* Change to your desired hover color */
+}
+
+.image-with-shadow {
+  opacity: 0.5;
+  border: none;
+}
+
+.row-for-ADC {
+  align-items: start;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.right_side_column_headings {
+  color: #946cf2;
+  font-size: smaller;
+  letter-spacing: 3px;
+  margin-top: 35px;
+  margin-bottom: 0px;
+}
+
+.right_side_column_content {
+  color: black;
+  font-weight: 500;
+  font-size: large;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  line-height: 0.5px;
+}
+
+.custom-input {
+  font-weight: 300;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero img {
+  width: 100%;
+}
+
+.motto {
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  margin-bottom: 4vh;
+  bottom: 10%;
+  padding: 1vw;
+  font-size: 3vw;
+}
+
+.thumb-box {
+  display: flex;
+  max-width: 100%;
+  position: relative;
+}
+
+.thumb-box a {
+  padding: 0;
+  position: relative;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.thumb-box img {
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+.overlay-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  padding: 5%;
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.75)
+  );
+}
+
+.meta {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.main-title {
+  font-size: 26px;
+  display: block;
+  color: white;
+  font-weight: 400;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spanElement {
+  color: #fff;
+  margin-top: 5px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  color: #fff;
+  max-height: 0;
+  line-height: 20px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-out, max-height 0.5s ease-out, margin 0.5s;
+}
+
+.description {
+  color: #fff;
+  font-size: 16px;
+  margin-top: 5px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  color: #fff;
+  max-height: 0;
+  line-height: 20px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-out, max-height 0.5s ease-out, margin 0.5s;
+}
+
+
+.thumb-box a:hover .description {
+  opacity: 1;
+  max-height: 100px;
+  margin-top: 5px;
+  transition: opacity 0.4s ease-out, max-height 0.9s ease-out;
+}
+.thumb-box a:hover .spanElement {
+  opacity: 1;
+  max-height: 100px;
+  margin-top: 5px;
+  transition: opacity 0.4s ease-out, max-height 0.9s ease-out;
+}
+
+.thumb-box a:hover .overlay-box {
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
+}
+
+.tdd {
+  height: 15vw;
+  width: 22.5vw;
+  object-fit: cover; /* Ensure the image covers the area */
+  display: block; /* Prevents extra space below inline images */
+  margin-bottom: 5px; /* Add space between image and text */
+}
+
+.hh5 {
+  color: #000;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 20vw;
+  line-height: 20px;
+}
+
+/* Style for table and table cells */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  border: 0px;
+  vertical-align: top; /* Align content to the top of the cell */
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+  table,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  td {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .tdd {
+    width: 100%;
+    height: auto; /* Allow images to scale with their aspect ratio */
+  }
+
+  .hh5 {
+    max-width: 100%; /* Adjust text width to fit the container */
+  }
+}
