@@ -1,60 +1,74 @@
 {% extends "base.html" %} {% block start %}
-<div class="container-xxl" style="padding:30px;">
-    <div class="row mt-3">
-        <div class="col">
-            <a class="button" type="submit" href="/gen/">Generate Posts</a>
-            <a class="button" type="submit" href="/addPost/">Add Post</a>
+<!-- First section of Home page  -->
+<section>
+    <!-- <a class="button" type="submit" href="/gen/">Generate Posts</a> -->
+    <div class="container-xxl div-1">
+        <div class="row container-xxl div-2">
+            <!-- Left side panel/Image of page -->
+            <div class="col-lg-9 container-xxl div-3">
+                {% for post in posts %}
+                {% if forloop.first %}
+
+                <div class="thumb-box">
+                    <a href="">
+                        <img src="{{post.image.url}}" alt="">
+                        <span class="overlay-box">
+                            <div>
+                                <span class="meta">{{post.category}}</span>
+                            </div>
+                            <span class="main-title">{{post.title}}</span>
+                            <div class="spanElement">
+                                <span class="text-no-underline row-for-ADC"><i class="fa-solid fa-user fa-sm"></i>
+                                    akbarh</i></span>
+                                <span class="text-no-underline row-for-ADC">{{post.updated_at}}</span>
+                                <span class="text-no-underline row-for-ADC">No Comments</span>
+                            </div>
+                            <!-- <span class="description">Last updated at {{post.updated_at}}</span> -->
+                            <span class="description">{{post.content}}</span>
+                        </span>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+            <!-- Right side panel of page -->
+            <div class="col-lg-3 right-side"
+                style="padding-left: 30px; padding-right: 30px; margin-top: 20px; margin-bottom: 20px;">
+                <img src="media/images/apple_logo.jpg" class="img-fluid">
+                <div class="column">
+                    <h5 class="right_side_column_headings" style="color: #946cf2;">APPS</h5>
+                    <a class="right_side_column_content" href="#">Broke a Glass? Someday You Might 3-D-Print a New
+                        One</a>
+                    <h5 class="right_side_column_headings" style="color: #946cf2;">GAMES</h5>
+                    <a class="right_side_column_content" href="#">This Is a Giant Shipworm. You May Wish It Had Stayed
+                        In
+                        Its Tube.</a>
+                    <h5 class="right_side_column_headings" style="color: #946cf2;">EDITORS PICK</h5>
+                    <a class="right_side_column_content" href="#">For Families of Teens at Microsoft Surface</a>
+                    <h5 class="right_side_column_headings" style="color: #946cf2;">EDITORS PICK</h5>
+                    <a class="right_side_column_content" href="#">Why Netflix shares are down 10%</a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <!-- Left side panel/Image of page -->
-        <div class="col-lg-9">
-            {% for post in posts %}
-            {% if forloop.first %}
+    <style>
+        .container-xxl.div-1 {
+            width: fit-content;
+        }
 
-            <div class="thumb-box">
-                <a href="">
-                    <img src="{{post.image.url}}" alt="">
-                    <span class="overlay-box">
-                        <div>
-                            <span class="meta">{{post.category}}</span>
-                        </div>
-                        <span class="main-title">{{post.title}}</span>
-                        <div class="spanElement">
-                            <span class="text-no-underline row-for-ADC"><i class="fa-solid fa-user"></i>
-                                akbarh</i></span>
-                            <span class="text-no-underline row-for-ADC">July 7, 2021</span>
-                            <span class="text-no-underline row-for-ADC">No Comments</span>
-                        </div>
-                        <span class="description">Last updated at {{post.updated_at}}</span>
-                        <span class="description">{{post.content}}</span>
-                    </span>
-                </a>
-            </div>
+        .container-xxl.row.div-2 {
+            padding: 0px;
+            width: fit-content;
+        }
 
-            {% endif %}
-            {% endfor %}
-        </div>
-        <!-- Right side panel of page -->
-        <div class="col-lg-3">
-            <img src="media/images/apple_logo.jpg" class="img-fluid">
-            <div class="column">
-                <h5 class="right_side_column_headings" style="color: #946cf2;">APPS</h5>
-                <a class="right_side_column_content" href="#">Broke a Glass? Someday You Might 3-D-Print a New
-                    One</a>
-                <h5 class="right_side_column_headings" style="color: #946cf2;">GAMES</h5>
-                <a class="right_side_column_content" href="#">This Is a Giant Shipworm. You May Wish It Had Stayed
-                    In
-                    Its Tube.</a>
-                <h5 class="right_side_column_headings" style="color: #946cf2;">EDITORS PICK</h5>
-                <a class="right_side_column_content" href="#">For Families of Teens at Microsoft Surface</a>
-                <h5 class="right_side_column_headings" style="color: #946cf2;">EDITORS PICK</h5>
-                <a class="right_side_column_content" href="#">Why Netflix shares are down 10%</a>
-            </div>
-        </div>
-    </div>
-</div>
+        .col-lg-9.container-xxl.div-3 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 
+</section>
 <!-- Section for Editors pick -->
 <section class="container-xxl" style="padding:30px;">
     <div class="row">
@@ -85,6 +99,7 @@
                     {% endfor %}
                 </tr>
             </table>
+            <hr>
         </div>
         <!-- News letter subscription part -->
         <div class="col-lg-3">
@@ -115,51 +130,155 @@
             </div>
         </div>
     </div>
+</section>
+
+<!-- Section for Tech reviews -->
+<section class="container-xxl" style="padding:30px;">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="container mt-5">
+                <div class="row" style="align-items: center;">
+                    <div class="col">
+                        <h1 class="text-start">Tech Review's</h1>
+                    </div>
+                    <div class="col">
+                        <div class="text-end"><a class="custom_a" href="#">
+                                More in Tech Review's
+                                <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for post in posts|slice:"3:" %}
+            <div style="margin-left: 0px; padding: 20px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#" style="text-decoration: none;"><img src="{{ post.image.url }}"
+                                style="width: 30rem; height: 20rem;" class="img-fluid" alt="{{ post.image.url }}"></a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <a href="{% url 'category_view' category=post.category %}"
+                                style="display: inline-block; width: min-content; text-decoration: none;">
+                                <h5 class="card-title mb-3" style="color: #7a52ec; letter-spacing: 4px;">
+                                    {{ post.category}}</h5>
+                            </a>
+                            <p class="card-title mb-3"
+                                style="font-size: xx-large; color: black; display: inline-block; font-weight: 500; font-size: 26px;">
+                                <a href="#" style="text-decoration: none; color: black;">{{ post.title }}</a>
+                            </p>
+                            <p class="P-tech-reviews">
+                                {{post.content}}
+                            </p>
+
+                            <p class="card-text"><small class="text-body-secondary"><span
+                                        class="text-no-underline row-for-ADC"><i class="fa-solid fa-user fa-sm"></i>
+                                        akbarh <span class="text-no-underline row-for-ADC m-5"><i
+                                                class="fa-solid fa-calendar fa-sm"></i> July 7,
+                                            2021</span></i></span> </small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-lg-3" style="margin-top: 150px; padding: 0px;">
+            <!-- Social links  -->
+            <div style="margin-left: 15px;">
+                <img class="img-fluid" style="padding: 0px; width: 328px;" src="/media/images/right.jpg" alt="">
+                <hr style="margin-left: 10px; margin-right: 10px;">
+                <h4>Stay Connected</h4>
+                <div>
+                    <div class="d-flex align-items-center mt-5">
+                        <i class="fa-brands fa-facebook-f" style="color: #005eff; width: fit-content;"></i>
+                        <h5 class="ml-2 mb-0" style="margin-left: 20px;">Traverse News</h5>
+                    </div>
+                    <div style="margin-left: 30px; color: #686868; font-weight: 300;">2M+ Followers</div>
+                </div>
+
+                <div>
+                    <div class="d-flex align-items-center mt-3">
+                        <i class="fa-brands fa-twitter" style="color: #005eff; width: fit-content;"></i>
+                        <h5 class="ml-2 mb-0" style="margin-left: 20px;">@traversenews</h5>
+                    </div>
+                    <div style="margin-left: 40px; color: #686868; font-weight: 300;">1.4M+ Followers</div>
+                </div>
+
+                <div>
+                    <div class="d-flex align-items-center mt-3">
+                        <i class="fa-brands fa-youtube" style="color: #f31c23; width: fit-content;"></i>
+                        <h5 class="ml-2 mb-0" style="margin-left: 20px;">Traverse</h5>
+                    </div>
+                    <div style="margin-left: 40px; color: #686868; font-weight: 300;">4M+ Followers</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 
-
+<!-- Podcast -->
+<section class="m-5" style="padding-left: 50px; padding-right: 50px;">
+    <div class="card" style="border-radius: 20px; background-color: rgb(142,251,218,255); height: 217px;">
+        <div class="row text-start">
+            <div class="col-4">
+                <img class="div-img-up" src="/media/images/podcast.png" alt="">
+            </div>
+            <div class="col-lg-8">
+                <h5 class="mt-4" style="color: #7a52ec; margin-left: 8px;">Traverse Podcasts</h5>
+                <div class="row mt-4">
+                    <h2 class="item1" style="font-weight: 600;">Listen to daily tech news podcast
+                    </h2>
+                    <a href="#" class="item2">Listen Now</a>
+                </div>
+                <div class="mt-0" style="color: #686868; margin-left: 8px;">Maecenas potenti non, turpis eget turpis
+                    gravida
+                    maecenas.
+                </div>
+            </div>
+        </div>
+    </div>
     <style>
-        input[type="email"] {
-            border-radius: 1px;
-            padding: 8px;
-            margin-right: 10px;
-            border: 1px solid lightgrey;
+        .item1 {
+            width: 66.66%;
+            text-align: center;
+            margin-top: 15px;
         }
 
-        input[type="email"]:focus {
-            border-color: rgb(101, 101, 101);
-            outline: none;
-        }
-
-
-        button {
-            border-radius: 5px;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+        .item2 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            color: white;
             cursor: pointer;
+            text-decoration: none;
+            width: 33.33%;
+            margin-top: 15px;
+            margin-left: 60px;
+            padding: 10px 40px;
+            background-color: #7a52ec;
+            border-radius: 50px;
+            max-width: fit-content;
         }
 
-        button:hover {
-            background-color: #0056b3;
+
+        .item2:hover {
+            background-color: #946cf2;
         }
 
-        .error-message {
-            color: rgb(251, 73, 73);
-            margin-top: 5px;
-        }
-
-        .fa-envelope {
-            color: #FFF;
-        }
-
-        .parent-div:hover .fa-envelope {
-            color: #a4a4a6;
-            transition: all 0.2s ease-in-out;
+        .div-img-up {
+            width: 300px;
+            height: 250px;
+            margin-left: -1px;
+            position: relative;
+            top: -35px;
+            filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
         }
     </style>
 </section>
+
 
 <script>
     document.getElementById("subscription-form").addEventListener("submit", function (event) {
@@ -181,31 +300,61 @@
     });
 </script>
 
+
+<style>
+    .P-tech-reviews {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    input[type="email"] {
+        border-radius: 1px;
+        padding: 8px;
+        margin-right: 10px;
+        border: 1px solid lightgrey;
+    }
+
+    input[type="email"]:focus {
+        border-color: rgb(101, 101, 101);
+        outline: none;
+    }
+
+
+    button {
+        border-radius: 5px;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #ededed;
+    }
+
+    .error-message {
+        color: rgb(251, 73, 73);
+        margin-top: 5px;
+    }
+
+    .fa-envelope {
+        color: #FFF;
+    }
+
+    .parent-div:hover .fa-envelope {
+        color: #a4a4a6;
+        transition: all 0.2s ease-in-out;
+    }
+
+    @media (max-width: 600px) {
+        .right-side {
+            padding-top: 20px;
+            /* Add padding top when screen size is 600px or less */
+        }
+    }
+</style>
 {% endblock %}
-
-<!--
-     <div class="card text-bg-dark hero" style="border: none; border-radius: 0px;">
-                <img src="{{post.image.url}}" class="img-fluid image-with-shadow" alt="{{post.title}}">
-                <div class="card-img-overlay d-flex flex-column justify-content-end second_div">
-                    <div class="motto">This is my NEW
-                        ldsaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddong, long text</div>
-                    <div style="margin-bottom: 40px;">
-                        <a class="card_content category-link" href="#">{{post.category}}</a>
-                    </div>
-                    <div style="margin-bottom: 15px;">
-                        <a class="card_title" style="text-decoration: none;" href="#">{{post.title}}</a>
-                    </div>
-                    <div class="column" style="margin-bottom: 26%;">
-                        <span class="text-no-underline row-for-ADC"><i class="fa-solid fa-user"></i>
-                            akbarh</i></span>
-                        <span class="text-no-underline row-for-ADC">July 7, 2021</span>
-                        <span class="text-no-underline row-for-ADC">No Comments</span>
-                    </div>
-
-                    <p>{{post.content}}</p>
-                    <p><small>Last updated {{post.updated_at}} </small></p>
-                </div>
-            </div>
-
-
- -->

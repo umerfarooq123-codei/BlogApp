@@ -14,7 +14,9 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.conf import settings
-from datetime import datetime
+import pytz
+pk_timezone = pytz.timezone('Asia/Karachi')
+
 
 fake = Faker()
 # Create your views here.
@@ -35,7 +37,7 @@ listOfCategories = [
 def home(request):
     posts = Post.objects.all()
     selected = []
-    for i in range(4):
+    for i in range(6):
         selected.append(posts[i])
     for post in selected:
         post.updated_at = post.updated_at.strftime('%B %d, %Y')
@@ -94,15 +96,15 @@ def addPost(request):
 
 @login_required(login_url='/login/')
 def generatePosts(request):
-    for _ in range(10):
+    for _ in range(1):
         user = User.objects.order_by('?').first()
         title = fake.sentence()
         content = fake.paragraph(max(10, 100))
 
         created_at = fake.date_time_between(
-            start_date='-1y', end_date='now', tzinfo=datetime.timezone.utc)
+            start_date='-1y', end_date='now', tzinfo=pk_timezone)
         updated_at = fake.date_time_between(
-            start_date='+1d', end_date='+1y', tzinfo=datetime.timezone.utc)
+            start_date='+1d', end_date='+1y', tzinfo=pk_timezone)
         is_published = fake.boolean(chance_of_getting_true=50)
         slug = fake.slug()
         image_url = fake.image_url()
